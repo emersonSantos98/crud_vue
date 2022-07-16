@@ -1,0 +1,49 @@
+{
+	"contacts": [
+	{
+	"id": "Dhshgjhjsh",
+	"nome": "Marcos Moura",
+	"company": "YouTube",
+	"email": "Marcos@gmail.com",
+	"titulo": "Youtuber",
+	"telefone": "9876546787",
+	"photo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBQRoWR8MCG_kTFAHiL2EL6wmO_7kgb-Fbl4Pj3ha7i0DNJvJa1zkaOpDO_g_oeERR08g&usqp=CAU",
+	"grupoId": "1"
+	},
+	{
+	"id": "Njsohg",
+	"nome": "Marcos Moura",
+	"company": "YouTube",
+	"email": "Marcos@gmail.com",
+	"titulo": "Youtuber",
+	"telefone": "9876546787",
+	"photo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBQRoWR8MCG_kTFAHiL2EL6wmO_7kgb-Fbl4Pj3ha7i0DNJvJa1zkaOpDO_g_oeERR08g&usqp=CAU",
+	"grupoId": "2"
+	},
+	{
+	"id": "Bijoagjhjsh",
+	"nome": "Marcos Moura",
+	"company": "YouTube",
+	"email": "Marcos@gmail.com",
+	"titulo": "Youtuber",
+	"telefone": "9876546787",
+	"photo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBQRoWR8MCG_kTFAHiL2EL6wmO_7kgb-Fbl4Pj3ha7i0DNJvJa1zkaOpDO_g_oeERR08g&usqp=CAU",
+	"grupoId": "3"
+	}
+  ],
+	"groups": [
+	{
+		"id": "1",
+		"nome": "Colleague"
+	},
+	{
+		"id": "2",
+		"nome": "Friend"
+	},
+    {
+		"id": "3",
+		"nome": "Family"
+	}
+  ]
+    
+}
