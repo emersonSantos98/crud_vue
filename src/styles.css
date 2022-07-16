@@ -5,10 +5,14 @@ body {
 }
 
 .contact-img{
-    width: 150px;
+    width: 200px;
     border-radius: 50%;
 }
 .contact-img-big {
     width: 200px;
+    border-radius: 50%;
+}
+.contact-img-card{
+    width: 130px;
     border-radius: 50%;
 }

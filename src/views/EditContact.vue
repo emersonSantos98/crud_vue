@@ -7,7 +7,11 @@
         </div>
     </div>
     <div class="container mt-3">
-        <div class="row">
+        <div class="row align-items-center">
+            <div class="col-md-4">
+                <img src="https://truesun.in/wp-content/uploads/2021/08/62681-flat-icons-face-computer-design-avatar-icon.png"
+                    alt="" class="contact-img">
+            </div>
             <div class="col-md-4">
                 <form>
                     <div class="md-2">
@@ -38,9 +42,10 @@
                     </div>
                 </form>
             </div>
-            <div class="col-md-4">
-                <img src="https://truesun.in/wp-content/uploads/2021/08/62681-flat-icons-face-computer-design-avatar-icon.png"
-                    alt="" class="contact-img">
+        </div>
+        <div class="row mt-3">
+            <div class="col">
+                <router-link to="/" class="btn btn-success"><i class="fa fa-arrow-alt-circle-left"></i></router-link>
             </div>
         </div>
     </div>

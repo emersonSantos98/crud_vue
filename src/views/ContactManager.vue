@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col">
                 <p class="h3 text-success fw-bold">Gerenciador de contatos
-                     <router-link to="/contacts/add" class="btn btn-success btn-sm">
+                    <router-link to="/contacts/add" class="btn btn-success btn-sm">
                         <i class="fa fa-plus-circle">
                         </i> Novo
                     </router-link>
@@ -21,16 +21,16 @@
             </div>
         </div>
     </div>
-    <pre>{{contacts}}</pre>
+    <pre>{{ contacts }}</pre>
     <div class="container mt-3">
-        <div class="row">
+        <div class="row ">
             <div class="col-md-6">
-                <div class="card my-3 list-group-item-success shadow-lg">
+                <div class="card my-3 list-group-item-success shadow-lg ">
                     <div class="card-body">
-                        <div class="row">
+                        <div class="row ">
                             <div class="col-sm-4">
                                 <img src="https://cdn-icons-png.flaticon.com/512/219/219986.png" alt=""
-                                    class="contact-img">
+                                    class="contact-img-card">
                             </div>
                             <div class="col-sm-7">
                                 <ul class="list-group">
@@ -49,7 +49,6 @@
                                 <button class="btn btn-danger my-1">
                                     <i class="fa fa-trash"></i>
                                 </button>
-
                             </div>
                         </div>
                     </div>
@@ -60,32 +59,8 @@
 </template>
 
 <script>
-
 export default {
     nome: "ContactManager",
-    data : function () {
-        return {
-            loading : false,
-            contacts : [],
-            errorMessage : null
-        }
-    },
-    created : async function () {
-        try  {
-            this.loading = true;
-            let response = await ContactService.getALLContacts()
-            this.contacts = response.data;
-            this.loading = false;
-        }
-        catch (error){
-            this.errorMessage = error;
-            this.loading = false;
-
-        }
-    },
-    methods : {
-       
-    }
 }
 </script>
 
