@@ -2,44 +2,44 @@ import axios from "axios";
 
 
 export class ContactService{
-
-    static serveruRL = 'http://localhost:9000';
+    static serverURL = 'http://localhost:9000';
 
     static getALLContacts(){
-        let dataURL = '${this.serverURL}/contacts';
+        let dataURL = 'http://localhost:9000/contacts';
+        console.log(dataURL);
             return axios.get(dataURL);
+           
     }
-
+    
     static getContact(contactId){
-        let dataURL = '${this.serverURL}/contact/${contactId}';
+        let dataURL = 'http://localhost:9000/contacts/'+ contactId;
             return axios.get(dataURL);
     }
 
     static createContact(contact){
-        let dataURL = '${this.serverURL}/contact/';
+        let dataURL = 'http://localhost:9000/contacts/';
         return axios.post(dataURL, contact)
     }
 
     static updateContact(contact, contactId){
-        let dataURL = '${this.serverURL}/contact/${contactId}';
+        let dataURL = 'http://localhost:9000/contacts/'+ contactId;
         return axios.put(dataURL, contact)
     }
 
     static deleteContact(contactId){
-        let dataURL = '${this.serverURL}/contact/${contactId}';
+        let dataURL = 'http://localhost:9000/contacts/'+ contactId;
         return axios.delete(dataURL);
     }
 
 
     static getALLGroups() {
-        let dataURL = '${this.serverURL}/groups/';
+        let dataURL = 'http://localhost:9000/groups/';
         return axios.get(dataURL);
     }
 
      static getGroup(contact){
-        groupId = contact.groupId;
-        let dataURL = '${this.serverURL}/groups/${groupId}';
+        let groupId = contact.groupId;
+        let dataURL = 'http://localhost:9000/groups/'+ groupId;
             return axios.get(dataURL);
-
      }
 }

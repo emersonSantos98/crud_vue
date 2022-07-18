@@ -9,32 +9,34 @@
     <div class="container mt-3">
         <div class="row align-items-center">
             <div class="col-md-4">
-                <img src="https://truesun.in/wp-content/uploads/2021/08/62681-flat-icons-face-computer-design-avatar-icon.png"
+                <img :src="contact.photo"
                     alt="" class="contact-img">
             </div>
             <div class="col-md-4">
-                <form>
+                <form @submit.prevent="updateSubmit()">
                     <div class="md-2">
-                        <input type="text" class="form-control  my-1" placeholder="Nome">
+                        <input v-model="contact.nome" type="text" class="form-control  my-1" placeholder="Nome">
                     </div>
                     <div class="md-2">
-                        <input type="text" class="form-control  my-1" placeholder="photo URL">
+                        <input v-model="contact.photo" type="text" class="form-control  my-1" placeholder="photo URL">
                     </div>
                     <div class="md-2">
-                        <input type="email" class="form-control  my-1" placeholder="Email">
+                        <input v-model="contact.email" type="email" class="form-control  my-1" placeholder="Email">
                     </div>
                     <div class="md-2">
-                        <input type="texto" class="form-control  my-1" placeholder="Telefone">
+                        <input v-model="contact.telefone" type="texto" class="form-control  my-1"
+                            placeholder="Telefone">
                     </div>
                     <div class="md-2">
-                        <input type="text" class="form-control  my-1" placeholder="company">
+                        <input v-model="contact.company" type="text" class="form-control  my-1" placeholder="company">
                     </div>
                     <div class="md-2">
-                        <input type="text" class="form-control  my-1" placeholder="titulo">
+                        <input v-model="contact.titulo" type="text" class="form-control  my-1" placeholder="titulo">
                     </div>
                     <div class="mb-2">
-                        <select class="form-control  my-1">
-                            <option value="">selecione Gupo</option>
+                        <select v-model="contact.groupId" class="form-control " v-if="groups.length > 0">
+                            <option value="">Selecione Gupo</option>
+                            <option :value="group.id" v-for="group of groups" :key="group.id">{{ group.nome }}</option>
                         </select>
                     </div>
                     <div class="mb-2">
@@ -49,15 +51,63 @@
             </div>
         </div>
     </div>
-    </template>
+</template>
 
      <script>
+import { ContactService } from '@/services/contactService'
 
-    export default {
-    nome: "EditContact"
+export default {
+    nome: "EditContact",
+    data: function () {
+        return {
+            contactId: this.$route.params.contactId,
+            loading: false,
+            contact: {
+                nome: '',
+                company: '',
+                email: '',
+                titulo: '',
+                telefone: '',
+                photo: '',
+                grupoId: '',
+            },
+            errorMessage: null,
+            groups: []
+        }
+    },
+    created: async function () {
+        try {
+            this.loading = true;
+            let response = await ContactService.getContact(this.contactId)
+            let groupResponse = await ContactService.getALLGroups();
+            this.contact = response.data;
+            this.groups = groupResponse.data;
+            this.loading = false;
+        }
+        catch (error) {
+            this.errorMessage = error;
+            this.loading = false;
+
+        }
+    },
+    methods: {
+        updateSubmit: async function () {
+            try {
+                let response = await ContactService.updateContact(this.contact, this.contactId);
+                if (response) {
+                    return this.$router.push('/');
+                }
+                else {
+                    return this.$router.push('/contacts/edit/${this.contactId}');
+                }
+            }
+            catch (error) {
+                console.log(error);
+            }
+        }
     }
-    </script>
+}
+</script>
 
     <style scoped>
-
     </style>

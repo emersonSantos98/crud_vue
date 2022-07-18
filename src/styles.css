@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@1,300&display=swap');
 body {
     font-family: 'Ubuntu', sans-serif;
-    background-color: #ebf4fd !important;
+    background-color: #ffffff !important;
 }
 
 .contact-img{
@@ -15,4 +15,23 @@ body {
 .contact-img-card{
     width: 130px;
     border-radius: 50%;
+}
+.container {
+    width: 100%;
+    padding-right: var(--bs-gutter-x, 0.75rem);
+    padding-left: var(--bs-gutter-x, 0.75rem);
+    margin-right: auto;
+    margin-left: auto;
+    transform-style: preserve-3d;
+}
+.container .card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: rgb(126, 134, 245);
+    background-clip: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    border-radius: 0.25rem;
 }
