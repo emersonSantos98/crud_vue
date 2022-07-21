@@ -1,4 +1,5 @@
 <template>
+
     <div class="container mt-3">
         <div class="row">
             <div class="col">
@@ -15,7 +16,7 @@
             <div class="col-md-4">
                 <form @submit.prevent="updateSubmit()">
                     <div class="md-2">
-                        <input v-model="contact.nome" type="text" class="form-control  my-1" placeholder="Nome">
+                        <input v-model="contact.name" type="text" class="form-control  my-1" placeholder="Nome">
                     </div>
                     <div class="md-2">
                         <input v-model="contact.photo" type="text" class="form-control  my-1" placeholder="photo URL">
@@ -36,8 +37,15 @@
                     <div class="mb-2">
                         <select v-model="contact.groupId" class="form-control " v-if="groups.length > 0">
                             <option value="">Selecione Gupo</option>
-                            <option :value="group.id" v-for="group of groups" :key="group.id">{{ group.nome }}</option>
+                            <option :value="group.id" v-for="group of groups" :key="group.id">{{ group.name }}</option>
                         </select>
+                        <v-autocomplete
+                            v-model="groupId"
+                            :items="groups"
+                            dense
+                            filled
+                            label="Filled"
+                        ></v-autocomplete>
                     </div>
                     <div class="mb-2">
                         <input type="submit" class="btn btn-success" value="Editar">
@@ -63,7 +71,7 @@ export default {
             contactId: this.$route.params.contactId,
             loading: false,
             contact: {
-                nome: '',
+                name: '',
                 company: '',
                 email: '',
                 titulo: '',
@@ -72,7 +80,8 @@ export default {
                 grupoId: '',
             },
             errorMessage: null,
-            groups: []
+            groups: [],
+            groupId: 1
         }
     },
     created: async function () {

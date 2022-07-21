@@ -15,10 +15,17 @@
             <div class="col-md-4">
                 <form @submit.prevent="submitCreate()">
                     <div class="md-2">
-                        <input v-model="contact.nome" type="text" class="form-control  my-1" placeholder="Nome">
+                        <input v-model="contact.name" type="text" class="form-control  my-1" placeholder="Nome">
                     </div>
                     <div class="md-2">
                         <input  v-model="contact.photo" type="text" class="form-control  my-1" placeholder="photo URL">
+                        <v-file-input
+                            :rules="rules"
+                            accept="image/png, image/jpeg, image/bmp"
+                            placeholder="Pick an avatar"
+                            prepend-icon="mdi-camera"
+                            label="Avatar"
+                        ></v-file-input>
                     </div>
                     <div class="md-2">
                         <input v-model="contact.email" type="email" class="form-control  my-1" placeholder="Email">
@@ -35,7 +42,7 @@
                     <div class="mb-2">
                         <select v-model="contact.grupoId" class="form-control" v-if="groups.length > 0">
                             <option value="">selecione Gupo</option>
-                            <option :value="group.id" v-for="group of groups" :key="group.id">{{group.nome}}</option>
+                            <option :value="group.id" v-for="group of groups" :key="group.id">{{group.name}}</option>
                         </select>
                     </div>
                     <div class="mb-2">
@@ -51,17 +58,18 @@
             </div>
         </div>
     </div>
+    <pre>{{contact}}</pre>
 </template>
 
 <script>
 import { ContactService } from '@/services/contactService'
 
 export default {
-    nome: "AddContact",
+    name: "AddContact",
     data : function () {
         return {
             contact : {
-                nome:'',
+                name:'',
                 company:'',
                 email:'',
                 titulo:'',
@@ -69,10 +77,11 @@ export default {
                 photo:'',
                 grupoId:'',
             },
-            
             groups : []
         }
+        
     },
+    
     created : async function () {
         try {
             let response = await ContactService.getALLGroups();
@@ -86,13 +95,18 @@ export default {
     methods : {
         submitCreate : async function () {
             try {
+                console.log("this.contact");
+                console.log(this.contact);
                 let response = await ContactService.createContact(this.contact);
+                
                 if(response){
                     return this.$router.push('/');  
                 }
                 else{
-                    return this.$router.push('/contacts/add');
+                    return this.$router.push('/contact/add');
+                   
                 }
+                
             }
             catch (error){
                 console.log(error);
