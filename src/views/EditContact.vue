@@ -1,46 +1,47 @@
 <template>
+
     <div class="container mt-3">
         <div class="row">
             <div class="col">
-                <p class="h3 text-success fw-bold">Editar Contato</p>
+                <p class="h3 text-success fw-bold"></p>
             </div>
         </div>
     </div>
     <div class="container mt-3">
         <div class="row align-items-center">
             <div class="col-md-4">
-                <img :src="contact.photo"
+                <img :src="contact[0].photo"
                     alt="" class="contact-img">
             </div>
             <div class="col-md-4">
                 <form @submit.prevent="updateSubmit()">
                     <div class="md-2">
-                        <input v-model="contact.nome" type="text" class="form-control  my-1" placeholder="Nome">
+                        <input v-model="contact[0].name" type="text" class="form-control  my-1" placeholder="Nome">
                     </div>
                     <div class="md-2">
-                        <input v-model="contact.photo" type="text" class="form-control  my-1" placeholder="photo URL">
+                        <input v-model="contact[0].photo" type="text" class="form-control  my-1" placeholder="photo URL">
                     </div>
                     <div class="md-2">
-                        <input v-model="contact.email" type="email" class="form-control  my-1" placeholder="Email">
+                        <input v-model="contact[0].email" type="email" class="form-control  my-1" placeholder="Email">
                     </div>
                     <div class="md-2">
-                        <input v-model="contact.telefone" type="texto" class="form-control  my-1"
+                        <input v-model="contact[0].telefone" type="nu" class="form-control  my-1"
                             placeholder="Telefone">
                     </div>
                     <div class="md-2">
-                        <input v-model="contact.company" type="text" class="form-control  my-1" placeholder="company">
+                        <input v-model="contact[0].company" type="text" class="form-control  my-1" placeholder="company">
                     </div>
                     <div class="md-2">
-                        <input v-model="contact.titulo" type="text" class="form-control  my-1" placeholder="titulo">
+                        <input v-model="contact[0].titulo" type="text" class="form-control  my-1" placeholder="titulo">
                     </div>
                     <div class="mb-2">
-                        <select v-model="contact.groupId" class="form-control " v-if="groups.length > 0">
+                        <select v-model="contact[0].groupId" class="form-control " v-if="groups.length > 0">
                             <option value="">Selecione Gupo</option>
-                            <option :value="group.id" v-for="group of groups" :key="group.id">{{ group.nome }}</option>
+                            <option :value="group.id" v-for="group of groups" :key="group.id">{{ group.name }}</option>
                         </select>
                     </div>
                     <div class="mb-2">
-                        <input type="submit" class="btn btn-success" value="Editar">
+                        <input type="submit" class="btn btn-success" value="Salvar">
                     </div>
                 </form>
             </div>
@@ -63,16 +64,17 @@ export default {
             contactId: this.$route.params.contactId,
             loading: false,
             contact: {
-                nome: '',
+                name: '',
                 company: '',
                 email: '',
                 titulo: '',
                 telefone: '',
                 photo: '',
-                grupoId: '',
+                groupId: '',
             },
             errorMessage: null,
-            groups: []
+            groups: [],
+            groupId: 1
         }
     },
     created: async function () {
@@ -93,12 +95,12 @@ export default {
     methods: {
         updateSubmit: async function () {
             try {
-                let response = await ContactService.updateContact(this.contact, this.contactId);
+                let response = await ContactService.updateContact(this.contact[0], this.contactId);
                 if (response) {
                     return this.$router.push('/');
                 }
                 else {
-                    return this.$router.push('/contacts/edit/${this.contactId}');
+                    return this.$router.push(`/contacts/edit/${this.contactId}`);
                 }
             }
             catch (error) {

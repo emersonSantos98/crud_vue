@@ -1,19 +1,19 @@
 <template>
-  <nav class="navbar-dark bg-primary navbar-expand-sm">
-        <div class="container">
-            <router-link to="/" class="navbar-brand">
-                <i class="fa fa-mobile"></i>Vue Contact Manager</router-link> 
-        </div>
-    </nav>
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">
+      <img src="img_avatar1.png" alt="Logo" style="width:40px;" class="rounded-pill">
+    </a>
+  </div>
+</nav>
 </template>
 
 <script>
 
 export default {
-    nome: "NavBar"
+  nome: "NavBar"
 }
 </script>
 
 <style scoped>
-
 </style>

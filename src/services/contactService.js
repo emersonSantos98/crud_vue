@@ -2,44 +2,51 @@ import axios from "axios";
 
 
 export class ContactService{
-    static serverURL = 'http://localhost:9000';
+    static serverURL = `http://localhost:3333`;
 
-    static getALLContacts(){
-        let dataURL = 'http://localhost:9000/contacts';
-        console.log(dataURL);
+    static getALLContacts() {
+        let dataURL = `${this.serverURL}/contacts`;
+        
             return axios.get(dataURL);
            
     }
     
     static getContact(contactId){
-        let dataURL = 'http://localhost:9000/contacts/'+ contactId;
+        let dataURL = `${this.serverURL}/contact/${contactId}`;
+        console.log('dataURL');
+        console.log(dataURL);
             return axios.get(dataURL);
     }
 
     static createContact(contact){
-        let dataURL = 'http://localhost:9000/contacts/';
-        return axios.post(dataURL, contact)
+        let dataURL = `${this.serverURL}/contacts/`;
+        console.log('dataURL.contact');
+        console.log(dataURL,contact);
+        return axios.post(dataURL,contact);
     }
+       
 
     static updateContact(contact, contactId){
-        let dataURL = 'http://localhost:9000/contacts/'+ contactId;
+        let dataURL = `${this.serverURL}/contact/${contactId}`;
         return axios.put(dataURL, contact)
     }
 
     static deleteContact(contactId){
-        let dataURL = 'http://localhost:9000/contacts/'+ contactId;
+        let dataURL = `${this.serverURL}/contact/${contactId}`;
         return axios.delete(dataURL);
     }
 
 
     static getALLGroups() {
-        let dataURL = 'http://localhost:9000/groups/';
+        let dataURL = `${this.serverURL}/groups`;
         return axios.get(dataURL);
     }
 
      static getGroup(contact){
-        let groupId = contact.groupId;
-        let dataURL = 'http://localhost:9000/groups/'+ groupId;
+        let grupoId = contact.groupId;
+        console.log('contact.groupId');
+        console.log(grupoId);
+            let dataURL = `${this.serverURL}/groups/${grupoId}`;
             return axios.get(dataURL);
      }
 }
