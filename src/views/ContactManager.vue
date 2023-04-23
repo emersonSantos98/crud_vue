@@ -56,6 +56,7 @@
 
 <script>
 import { ContactService } from "@/services/contactService";
+const contactService = new ContactService();
 export default {
     nome: "ContactManager",
     data: function () {
@@ -69,25 +70,23 @@ export default {
     created: async function () {
         try {
             this.loading = true;
-            let response = await ContactService.getALLContacts()
+            let response = await contactService.getALLContacts();
             this.contacts = response.data;
             this.loading = false;
-            console.log('contacts');
-            console.log()
         }
         catch (error) {
             this.errorMessage = error;
             this.loading = false;
         }
-        
     },
-    methods: {
+
+  methods: {
         DeleteContact: function (contactId) {
             try {
                 this.loading = true;
-                ContactService.deleteContact(contactId).then(response => {
+                contactService.deleteContact(contactId).then(response => {
                     if (response) {
-                        ContactService.getALLContacts().then(response => {
+                        contactService.getALLContacts().then(response => {
                             this.contacts = response.data;
                             this.loading = false;
                         });

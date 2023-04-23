@@ -58,7 +58,11 @@
 </template>
 
 <script>
-import { ContactService } from '@/services/contactService'
+import { ContactService, GroupService } from '@/services/contactService'
+
+const contactService = new ContactService();
+const groupService = new GroupService();
+
 
 export default {
     name: "AddContact",
@@ -80,7 +84,7 @@ export default {
 
     created: async function () {
         try {
-            let response = await ContactService.getALLGroups();
+            let response = await groupService.getALLGroups();
             this.groups = response.data;
         }
         catch (error) {
@@ -91,8 +95,8 @@ export default {
     methods: {
         submitCreate: async function () {
             try {
-               
-                let response = await ContactService.createContact(this.contact);
+
+                let response = await contactService.createContact(this.contact);
 
                 if (response) {
                     return this.$router.push('/');
@@ -107,12 +111,12 @@ export default {
                 console.log(error);
             }
         }
-         
+
     }
-    
-    
- 
-    
+
+
+
+
 }
 </script>
 

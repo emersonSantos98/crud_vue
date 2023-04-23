@@ -14,14 +14,14 @@ const routes = [
     name: 'TelaLogin',
     component: TelaLogin
   },
- 
+
   {
     path: '/',
     name: 'home',
     redirect : "/contacts",
     component: HomeView
   },
- 
+
   {
     path: '/contacts',
     name: 'ContactManager',
@@ -47,8 +47,8 @@ const routes = [
     name: 'PageNotFound',
     component: PageNotFound
   },
-  
- 
+
+
 ]
 
 const router = createRouter({

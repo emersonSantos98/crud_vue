@@ -1,52 +1,141 @@
-import axios from "axios";
+import {useApi} from '../composables/ApiConect'
+
+const api = useApi()
 
 
-export class ContactService{
-    static serverURL = `http://localhost:3333`;
+export function ContactService() {
 
-    static getALLContacts() {
-        let dataURL = `${this.serverURL}/contacts`;
-        
-            return axios.get(dataURL);
-           
-    }
-    
-    static getContact(contactId){
-        let dataURL = `${this.serverURL}/contact/${contactId}`;
-        console.log('dataURL');
-        console.log(dataURL);
-            return axios.get(dataURL);
-    }
-
-    static createContact(contact){
-        let dataURL = `${this.serverURL}/contacts/`;
-        console.log('dataURL.contact');
-        console.log(dataURL,contact);
-        return axios.post(dataURL,contact);
-    }
-       
-
-    static updateContact(contact, contactId){
-        let dataURL = `${this.serverURL}/contact/${contactId}`;
-        return axios.put(dataURL, contact)
+    this.getALLContacts = () => {
+        return new Promise((resolve, reject) => {
+            try {
+                api.get('contacts/getContactsAll')
+                    .then((response) => {
+                        resolve(response)
+                    })
+            } catch (err) {
+                reject(err)
+            }
+        })
     }
 
-    static deleteContact(contactId){
-        let dataURL = `${this.serverURL}/contact/${contactId}`;
-        return axios.delete(dataURL);
+    this.getContact = (contactId) => {
+        return new Promise((resolve, reject) => {
+            try {
+                api.get(`contacts/getContactsById/${contactId}`)
+                    .then((response) => {
+                        resolve(response)
+                    })
+            } catch (err) {
+                reject(err)
+            }
+
+        })
     }
 
-
-    static getALLGroups() {
-        let dataURL = `${this.serverURL}/groups`;
-        return axios.get(dataURL);
+    this.createContact = (contact) => {
+        return new Promise((resolve, reject) => {
+            try {
+                api.post('contacts/createContacts', contact)
+                    .then((response) => {
+                        resolve(response)
+                    })
+            } catch (err) {
+                reject(err)
+            }
+        })
     }
 
-     static getGroup(contact){
-        let grupoId = contact.groupId;
-        console.log('contact.groupId');
-        console.log(grupoId);
-            let dataURL = `${this.serverURL}/groups/${grupoId}`;
-            return axios.get(dataURL);
-     }
+    this.updateContact = (contact_id, contact) => {
+        return new Promise((resolve, reject) => {
+            try {
+                api.put(`contacts/updateContacts/${contact_id}`, contact)
+                    .then((response) => {
+                        resolve(response)
+                    })
+            } catch (err) {
+                reject(err)
+            }
+        })
+    }
+
+    this.deleteContact = (contactId) => {
+        return new Promise((resolve, reject) => {
+            try {
+                api.delete(`contacts/deleteContacts/${contactId}`)
+                    .then((response) => {
+                        resolve(response)
+                    })
+            } catch (err) {
+                reject(err)
+            }
+        })
+    }
+}
+
+export function GroupService(){
+    this.getALLGroups = () => {
+        return new Promise((resolve, reject) => {
+            try {
+                api.get('groups/getGroupsAll')
+                    .then((response) => {
+                        resolve(response)
+                    })
+            } catch (err) {
+                reject(err)
+            }
+        })
+    }
+
+    this.getGroup = (groupId) => {
+        return new Promise((resolve, reject) => {
+            try {
+                api.get(`groups/getGroupsById/${groupId}`)
+                    .then((response) => {
+                        resolve(response)
+                    })
+            } catch (err) {
+                reject(err)
+            }
+
+        })
+    }
+
+    this.createGroup = (group) => {
+        return new Promise((resolve, reject) => {
+            try {
+                api.post('groups/createGroups', group)
+                    .then((response) => {
+                        resolve(response)
+                    })
+            } catch (err) {
+                reject(err)
+            }
+        })
+    }
+
+    this.updateGroup = (group_id, group) => {
+        return new Promise((resolve, reject) => {
+            try {
+                api.put(`groups/updateGroups/${group_id}`, group)
+                    .then((response) => {
+                        resolve(response)
+                    })
+            } catch (err) {
+                reject(err)
+            }
+        })
+    }
+
+    this.deleteGroup = (group_id) => {
+        return new Promise((resolve, reject) => {
+            try {
+                api.delete(`groups/deleteGroups/${group_id}`)
+                    .then((response) => {
+                        resolve(response)
+                    })
+            } catch (err) {
+                reject(err)
+            }
+        })
+    }
 }
