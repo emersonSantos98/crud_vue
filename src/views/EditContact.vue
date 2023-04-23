@@ -8,7 +8,6 @@
         </div>
     </div>
     <div class="container mt-3">
-                <pre>teste{{contact}}</pre>
         <div class="row align-items-center">
             <div class="col-md-4">
                 <img :src="contact.photo"
